@@ -99,7 +99,7 @@ section {
 /* Header Styles */
 .page__header {
     display: block;
-    background: rgb(36, 148, 212);
+    background: rgb(36, 148, 215);
     opacity: 0.95;
     position: fixed;
     top: 0;
@@ -131,9 +131,11 @@ section {
     background-color: transparent;
     color: white;
     cursor: pointer;
-    padding: 15px;
-    border-radius: 10px;
+    padding: 10px;
+    border-radius: 7px;
     font-size: 18px;
+    margin-left: 1em;
+    text-decoration: underline;
   }
   
   #scrlBtn:hover {
@@ -226,7 +228,7 @@ section:nth-of-type(3n + 1) .landing__container::after {
 /* Note: your-active-class class is applied through javascript. You should update the class here and in the index.html to what you set in your javascript file.  */
 section.your-active-class {
     background-color: rgba(0,13,60,1);
-    background: linear-gradient(0deg, rgba(0,13,60,1) 0%, rgb(36, 148, 212) 100%);
+    background: linear-gradient(0deg,  rgb(36, 148, 212) 0%, rgba(0,13,60,1) 100%);
     /* background: linear-gradient(0deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0) 100%); */
 }
 
@@ -253,4 +255,6 @@ section.your-active-class .landing__container::after {
 		           rotate(-360deg);
 	}
 }
-
+.hide{
+    display: none
+}
