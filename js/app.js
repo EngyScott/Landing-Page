@@ -41,11 +41,14 @@ const buildNavbar = function(section, a){
 /*** NAVBAR EFFECTS***/
 /* Hide when not active window */
 const hideNavbar = function(){
-    const intervalId = setInterval(() => {
-        if(!window.onscroll()){
-            pageHeader.style.display = 'none';
-        }
-    }, 10000);
+    if(!window.onscroll){
+        const intervalId = setInterval(() => {
+            pageHeader.classList.add('hide');
+        }, 10000);
+    }else{
+        clearInterval('intervalId');
+        pageHeader.classList.remove('hide');
+    }
 }
 /* Active tab when section on screen */
 const tabActive = function(){
@@ -66,7 +69,7 @@ function myFunction() {
     } else {
         navUL.className = "nav";
     }
-  }
+}
 /*** END OF NAVBAR EFFECTS***/
 // 
 // 
@@ -77,7 +80,7 @@ const sectionActive = function(){
         const secTop = section.getBoundingClientRect().top;//Get the top aligment for a section
         const secBtm = section.getBoundingClientRect().bottom;
         const windowHeight = window.innerHeight;//check screen height
-        if((secTop >= 0 && secTop < windowHeight) || (secTop < windowHeight && secBtm > windowHeight)){//if section aligment is within the screen
+        if((secTop > 0 && secTop < windowHeight) || (secTop < 0 && secBtm > windowHeight)){//if section aligment is within the screen
             const location = window.location.toString().split('#')[0];//change the window hash to match the shown section hash
             history.replaceState(null, '', location + `#${section.id}`);
             if(!section.classList.contains('your-active-class')){//add active effect to the active section
@@ -156,20 +159,25 @@ scrlBtn.addEventListener('click', function(){
 // 
                                     /**************    EXECUTE FUNCTIONS  ****************/ 
 window.onload = function(){
-// build the nav
+    // build the navbar
     buildNavbar();
-    // readBtnFunc();
 }
 // Listen for scroll event
-window.onscroll = function(){
+window.addEventListener('scroll', function(){
+    //Showing the up btn on sections
     showBtn();
-// Add class 'active' to section when near top of viewport
+    // Add class 'active' to section when near top of viewport
     sectionActive();
     // active tab function
     tabActive();
-    // hideNavbar();
-}
+});
+//Display the read more btn on sections
 displayBtn();
+//Select the read more btns
 const readBtns = document.querySelectorAll('.readBtn');
+//collapse sections
 hideP();
+//read more event listener
 readMore();
+//hiding navbar when no scroll
+// hideNavbar();
