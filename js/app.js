@@ -23,7 +23,7 @@ const parentDivs = document.querySelectorAll('.landing__container');
  * End Global Variables
  * START FUNCTIONS
 */
-/*********** NAVBAR SECTION ************************/
+                                        /*********** NAVBAR SECTION ************************/
 /*** CREAT THE NAVBAR ***/
 const buildNavbar = function(section, a){
     // LOOP OVER THE SECTIONS
@@ -58,16 +58,26 @@ const tabActive = function(){
         }
     }
 }
+/* Navbar Collapse */
+/* Toggle between adding and removing the "responsive" class to navbar when the user clicks on the icon */
+function myFunction() {
+    if (navUL.className === "nav") {
+        navUL.className += " responsive";
+    } else {
+        navUL.className = "nav";
+    }
+  }
 /*** END OF NAVBAR EFFECTS***/
 // 
 // 
-/************************ SECTIONS EFFECTS **************/
+                                        /************************ SECTIONS EFFECTS **************/
 // ADD ACTIVE CLASS TO ACTIVE SECTIONS
 const sectionActive = function(){
     for(let section of sections){
         const secTop = section.getBoundingClientRect().top;//Get the top aligment for a section
+        const secBtm = section.getBoundingClientRect().bottom;
         const windowHeight = window.innerHeight;//check screen height
-        if(secTop >= 0 && secTop <= windowHeight-200){//if section top aligment is within the screen
+        if((secTop >= 0 && secTop < windowHeight) || (secTop < windowHeight && secBtm > windowHeight)){//if section aligment is within the screen
             const location = window.location.toString().split('#')[0];//change the window hash to match the shown section hash
             history.replaceState(null, '', location + `#${section.id}`);
             if(!section.classList.contains('your-active-class')){//add active effect to the active section
@@ -81,21 +91,13 @@ const sectionActive = function(){
     }
 }
 /*** Create read more btn ***/
-// const readBtnFunc = function(){
-    
-// }
-// create btn
+// display a read more btn on every section
 const displayBtn = function(parent){
     for(let i = 0; i < parentDivs.length; i++){
         createBtn(parentDivs[i]);
     }
 }
-const hideP = function() {
-    for(let i = 0; i < readBtns.length; i++){
-        console.log(readBtns[i].previousElementSibling)
-        readBtns[i].previousElementSibling.classList.add('hide')
-    }
-};
+// read more btn creation function
 const createBtn = function (parent) {
     const readMe = document.createElement('button');
     readMe.innerText = "Read More";
@@ -108,6 +110,7 @@ const readMore = function(){
         readBtn.addEventListener('click', clickToggle);
     }
 }
+// the click callback function
 const clickToggle = function(event){
     let prevSibling = event.target.previousElementSibling;
     if(prevSibling.classList.contains('hide')){
@@ -118,8 +121,14 @@ const clickToggle = function(event){
         event.target.innerText = 'Read More'
     } 
 }
-
-/**************    SCROLL TO TOP BUTTON & NAVBAR HIDDEN  ****************/
+// add hide class to every seconf paragraph i every section
+const hideP = function() {
+    for(let i = 0; i < readBtns.length; i++){
+        readBtns[i].previousElementSibling.classList.add('hide')
+    }
+};
+// 
+                                            /**************    SCROLL TO TOP BUTTON  ****************/
 //Define the button
 const scrlBtn = document.getElementById("scrlBtn");
 // Button Display
@@ -145,6 +154,7 @@ scrlBtn.addEventListener('click', function(){
  * 
 */
 // 
+                                    /**************    EXECUTE FUNCTIONS  ****************/ 
 window.onload = function(){
 // build the nav
     buildNavbar();
@@ -155,6 +165,7 @@ window.onscroll = function(){
     showBtn();
 // Add class 'active' to section when near top of viewport
     sectionActive();
+    // active tab function
     tabActive();
     // hideNavbar();
 }
@@ -162,15 +173,3 @@ displayBtn();
 const readBtns = document.querySelectorAll('.readBtn');
 hideP();
 readMore();
-
-
-// Scroll to anchor ID using scrollTO event
-
-
-
-
-// Build menu 
-
-// Scroll to section on link click
-
-// Set sections as active

@@ -91,10 +91,14 @@ section {
     color: #fff;
     transition: ease 0.3s all;
 }
+.navbar__menu .icon {
+    display: none;
+  }
 .active{
     background: rgba(0,13,60,1);
     color: #fff;
 }
+
 
 /* Header Styles */
 .page__header {
@@ -242,6 +246,33 @@ section.your-active-class .landing__container::after {
     animation: rotate 5s linear 0s infinite forwards reverse;
 }
 
+.readBtn {
+    border: 0;
+    line-height: 2.5;
+    padding: 0 20px;
+    font-size: 1rem;
+    text-align: center;
+    color: #cc1;
+    /* text-shadow: 1px 1px 1px #000; */
+    border-radius: 10px;
+    background-color: transparent;
+    background-image: linear-gradient(to top left,
+                                      rgba(0, 0, 0, .2),
+                                      rgba(0, 0, 0, .2) 30%,
+                                      rgba(0, 0, 0, 0));
+    box-shadow: inset 2px 2px 3px rgba(255, 255, 255, .6),
+                inset -2px -2px 3px rgba(0, 0, 0, .6);
+}
+
+.readBtn:hover {
+    background-color: rgb(0, 92, 153);
+}
+
+.readBtn:active {
+    box-shadow: inset -2px -2px 3px rgba(255, 255, 255, .6),
+                inset 2px 2px 3px rgba(0, 92, 153, 0.6);
+}
+
 /* Section Active Styles Keyframe Animations */
 @keyframes rotate {
 	from {
@@ -258,3 +289,45 @@ section.your-active-class .landing__container::after {
 .hide{
     display: none
 }
+/* ************ MEDIA QUERIES *********** */
+/* When the screen is less than 600 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
+@media screen and (max-width: 992px) {
+    #navbar__list a {display: none;}
+    .navbar__menu a.icon {
+      float: left;
+      display: block;
+    }
+    /* SPECIAL RESPONSIVE CLASS FOR NAVBAR COLLAPSE */
+    #navbar__list.responsive {
+        position: relative;
+        margin-top: 67px;
+    }
+    .navbar__menu a.icon {
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+    #navbar__list.responsive a {
+        float: none;
+        display: block;
+        text-align: left;
+    }
+    #navbar__list li {
+        display: block;
+    }
+}
+/* Extra small devices (phones, 600px and down) */
+/* @media only screen and (max-width: 600px) {...} */
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+/* @media only screen and (min-width: 600px) {...} */
+
+/* Medium devices (landscape tablets, 768px and up) */
+/* @media only screen and (min-width: 768px) {...} */
+
+/* Large devices (laptops/desktops, 992px and up) */
+/* @media only screen and (min-width: 992px) {...} */
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+/* @media only screen and (min-width: 1200px) {...} */
