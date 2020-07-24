@@ -39,17 +39,17 @@ const buildNavbar = function(section, a){
 }
 /*** END OF NAVBAR CREATION***/
 /*** NAVBAR EFFECTS***/
-/* Hide when not active window */
-const hideNavbar = function(){
-    if(!window.onscroll){
-        const intervalId = setInterval(() => {
-            pageHeader.classList.add('hide');
-        }, 10000);
-    }else{
-        clearInterval('intervalId');
-        pageHeader.classList.remove('hide');
-    }
+// 
+/* Hide when not scrolling window */
+// init params
+let tictoc = setInterval(function(){}, 5000);
+// define function
+function toggleNavbar(){
+    pageHeader.style.display = "none"
+    clearInterval(tictoc);
 }
+// 
+// 
 /* Active tab when section on screen */
 const tabActive = function(){
     const links = document.querySelectorAll('li > a');
@@ -79,8 +79,8 @@ const sectionActive = function(){
     for(let section of sections){
         const secTop = section.getBoundingClientRect().top;//Get the top aligment for a section
         const secBtm = section.getBoundingClientRect().bottom;
-        const windowHeight = window.innerHeight;//check screen height
-        if((secTop > 0 && secTop < windowHeight) || (secTop < 0 && secBtm > windowHeight)){//if section aligment is within the screen
+        const windowHeight = window.innerHeight/3*2;//check screen inner height
+        if((secTop >= 0 && secTop <= windowHeight) || (secTop <= 0 && secBtm >= windowHeight)){//if section aligment is within the screen
             const location = window.location.toString().split('#')[0];//change the window hash to match the shown section hash
             history.replaceState(null, '', location + `#${section.id}`);
             if(!section.classList.contains('your-active-class')){//add active effect to the active section
@@ -171,6 +171,12 @@ window.addEventListener('scroll', function(){
     // active tab function
     tabActive();
 });
+/** window in scroll display the nav bar else display it as none */  
+window.addEventListener('scroll', function(){
+    clearInterval(tictoc);
+    pageHeader.style.display = "block";
+    tictoc=setInterval(toggleNavbar, 5000);
+})
 //Display the read more btn on sections
 displayBtn();
 //Select the read more btns

@@ -109,6 +109,7 @@ section {
     top: 0;
     width: 100%;
     z-index: 5;
+    /* transition: all ease 500s; */
 }
 
 /* Footer Styles */
@@ -133,7 +134,7 @@ section {
     border: none;
     outline: none;
     background-color: transparent;
-    color: white;
+    color: #cc1;
     cursor: pointer;
     padding: 10px;
     border-radius: 7px;
