@@ -234,7 +234,6 @@ section:nth-of-type(3n + 1) .landing__container::after {
 section.your-active-class {
     background-color: rgba(0,13,60,.6);
     background: linear-gradient(0deg,  rgb(36, 148, 212) 0%, rgba(0,13,60,.6) 100%);
-    /* background: linear-gradient(0deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0) 100%); */
 }
 
 section.your-active-class .landing__container::before {
@@ -254,7 +253,6 @@ section.your-active-class .landing__container::after {
     font-size: 1rem;
     text-align: center;
     color: #cc1;
-    /* text-shadow: 1px 1px 1px #000; */
     border-radius: 10px;
     background-color: transparent;
     background-image: linear-gradient(to top left,
@@ -291,8 +289,9 @@ section.your-active-class .landing__container::after {
     display: none
 }
 /* ************ MEDIA QUERIES *********** */
-/* When the screen is less than 600 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
+/* When the screen is less than 992 pixels wide */
 @media screen and (max-width: 992px) {
+    /* hide all links. Show toggle icon */
     #navbar__list a {display: none;}
     .navbar__menu a.icon {
       float: left;
@@ -319,17 +318,3 @@ section.your-active-class .landing__container::after {
         display: block;
     }
 }
-/* Extra small devices (phones, 600px and down) */
-/* @media only screen and (max-width: 600px) {...} */
-
-/* Small devices (portrait tablets and large phones, 600px and up) */
-/* @media only screen and (min-width: 600px) {...} */
-
-/* Medium devices (landscape tablets, 768px and up) */
-/* @media only screen and (min-width: 768px) {...} */
-
-/* Large devices (laptops/desktops, 992px and up) */
-/* @media only screen and (min-width: 992px) {...} */
-
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-/* @media only screen and (min-width: 1200px) {...} */

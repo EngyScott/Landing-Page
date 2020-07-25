@@ -5,6 +5,7 @@ Landing page with below features:
 - Navbar special motion effects
 - To top button with effects
 - Active section special effect
+- Sections Collapse (read more..)
 - Active navbar link heighlight
 
 
