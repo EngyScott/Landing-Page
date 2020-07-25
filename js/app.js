@@ -19,13 +19,13 @@ const   sections    = document.querySelectorAll('section'),
         navBar      = document.getElementsByClassName('navbar__menu'),
         pageHeader  = document.querySelector('header.page__header'),
         parentDivs  = document.querySelectorAll('.landing__container'),
-        scrlBtn     = document.getElementById("scrlBtn");
+        scrlBtn     = document.getElementById('scrlBtn'),
+        iconBtn     = document.getElementById('icon');
 /**
  * End Global Variables
  * START FUNCTIONS
 */
                                         /*********** NAVBAR SECTION ************************/
-
 /**
 * @description Create the navbar
 * @returns {HTML structure}
@@ -54,7 +54,7 @@ const buildNavbar = function(){
 let tictoc = setInterval(function(){}, 5000);
 // hide navbar func & clear the interval
 function hideNavbar(){
-    pageHeader.style.display = "none"
+    pageHeader.style.display = "none";
     clearInterval(tictoc);
 }
 /**
@@ -90,6 +90,13 @@ function myFunction() {
         navUL.className = "nav";
     }
 };
+/**
+* @description Add event listener to the icon button
+* @returns {} Navbar Collapse
+*/
+const navbarIcon = function (){
+    iconBtn.addEventListener('click', myFunction)
+};
 /*** END OF NAVBAR EFFECTS***/
 // 
 // 
@@ -100,7 +107,7 @@ function myFunction() {
 */
 const sectionActive = function(){
     //Loop over sections and apply fuction to each section
-    for(let section of sections){
+    sections.forEach(section => {
         const secTop = section.getBoundingClientRect().top;//Get the top aligment for a section
         const secBtm = section.getBoundingClientRect().bottom;//Get the bottom aligment for a section
         const windowHeight = window.innerHeight/3*2;//Get screen inner height and set the suitable show height
@@ -115,7 +122,7 @@ const sectionActive = function(){
                 section.classList.remove('your-active-class')
             }
         }
-    }
+    });
 };
 /**
 * @description Operates all read more button functions
@@ -134,10 +141,10 @@ const readMore = async function(){
 * @returns {function} toggle hide class to paragraph
 */
 const readBtnListener = function(xs){
-    for(let x of xs){
+    xs.forEach(x => {
         x.addEventListener('click', readMoreToggle);
-    }
-}
+    });
+};
 /*** Create read more btn ***/
 /**
 * @description Displays read-more button on every section
@@ -145,9 +152,9 @@ const readBtnListener = function(xs){
 * @returns {HTML structure}
 */
 const displayBtn = function(){
-    for(let i = 0; i < parentDivs.length; i++){
-        createBtn(parentDivs[i]);
-    }
+    parentDivs.forEach(div => {
+        createBtn(div)
+    });
 };
 /**
 * @description Create read-more button
@@ -181,9 +188,9 @@ const readMoreToggle = function(event){
 * @returns {CSSRule}
 */
 const hideP = function(tags) {
-    for(let i = 0; i < tags.length; i++){
-        tags[i].previousElementSibling.classList.add('hide')
-    }
+    tags.forEach(tag => {
+        tag.previousElementSibling.classList.add('hide')
+    });
 };
 // 
                                             /**************    SCROLL TO TOP BUTTON  ****************/
@@ -201,10 +208,10 @@ const showBtn = function(){
 * @returns {CSSRule} scroll to the top of ducomment
 */
 const scrlToTop = function(){
-    document.body.scrollTop = 0; // For Safari
-    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    document.body.scrollTop = 0;// For Safari
+    document.documentElement.scrollTop = 0;// For Chrome, Firefox, IE and Opera
 }
-
+//
 const scrlBtnClickEvent = function(){
     scrlBtn.addEventListener('click', scrlToTop);
 }
@@ -221,13 +228,15 @@ const init = function(){
     //The read more button create, display and func
     readMore();
     // scroll to top event Listener
-    scrlBtnClickEvent()
+    scrlBtnClickEvent();
+
+    navbarIcon()
 }
 // 
                                     /**************    EXECUTE FUNCTIONS  ****************/
-// window.onload = function(){
+window.onload = function(){
     init();
-// };
+};
 // Listen for scroll event
 window.addEventListener('scroll', function(){
     //Display scroll to top button
